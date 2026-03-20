@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martina Villone Dayenoff — Editora</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: rgb(23, 22, 112);
+    --azul-claro: rgba(23, 22, 112, 0.08);
+    --azul-medio: rgba(23, 22, 112, 0.5);
+    --blanco: #f4f4f4;
+    --blanco-puro: #ffffff;
+    --gris: #c8c8d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--blanco);
+    color: var(--azul);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 4rem;
+    background: rgba(244,244,244,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(23,22,112,0.1);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--azul);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--azul);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--azul);
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(244,244,244,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,244,244,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-blob {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100,99,200,0.35) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    animation: blobPulse 8s ease-in-out infinite alternate;
+  }
+
+  .hero-blob-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(50,49,160,0.3) 0%, transparent 70%);
+    bottom: -80px; left: 80px;
+    animation: blobPulse 10s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes blobPulse {
+    from { transform: scale(1) translate(0,0); }
+    to { transform: scale(1.15) translate(30px, -20px); }
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(244,244,244,0.5);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--blanco);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+    position: relative;
+  }
+
+  .hero-name .italic {
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--blanco);
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(244,244,244,0.6);
+    margin-top: 2.5rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 1s;
+  }
+
+  .hero-cta {
+    margin-top: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 1.3s;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    border: 2px solid var(--blanco);
+    color: var(--blanco);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--blanco);
+    color: var(--azul);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(244,244,244,0.4);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(244,244,244,0.5), transparent);
+    animation: scrollDrop 1.5s ease-in-out infinite;
+  }
+
+  @keyframes scrollDrop {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── SECTIONS GENERAL ── */
+  section {
+    padding: 7rem 4rem;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--azul);
+    opacity: 0.45;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--azul);
+    margin-bottom: 3rem;
+  }
+
+  /* ── SERVICIOS ── */
+  #servicios {
+    background: var(--azul);
+  }
+
+  #servicios .section-label,
+  #servicios .section-title {
+    color: var(--blanco);
+  }
+
+  #servicios .section-label { opacity: 0.5; }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .servicio-card {
+    border: 1px solid rgba(244,244,244,0.12);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+
+  .servicio-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(244,244,244,0.04);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .servicio-card:hover::before { transform: translateY(0); }
+  .servicio-card:hover { border-color: rgba(244,244,244,0.35); transform: translateY(-4px); }
+
+  .servicio-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .servicio-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-bottom: 0.8rem;
+  }
+
+  .servicio-card p {
+    font-size: 0.88rem;
+    color: rgba(244,244,244,0.55);
+    line-height: 1.7;
+  }
+
+  .servicio-tag {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(244,244,244,0.2);
+    color: rgba(244,244,244,0.5);
+    text-transform: uppercase;
+  }
+
+  /* ── PORTFOLIO / CUENTAS ── */
+  #portfolio {
+    background: var(--blanco);
+  }
+
+  .portfolio-intro {
+    max-width: 550px;
+    font-size: 1rem;
+    color: rgba(23,22,112,0.6);
+    line-height: 1.8;
+    margin-bottom: 4rem;
+  }
+
+  .upload-area {
+    border: 2px dashed rgba(23,22,112,0.25);
+    padding: 4rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .upload-area:hover {
+    border-color: var(--azul);
+    background: rgba(23,22,112,0.02);
+  }
+
+  .upload-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.5; }
+
+  .upload-area h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .upload-area p {
+    font-size: 0.85rem;
+    color: rgba(23,22,112,0.45);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-upload {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    background: var(--azul);
+    color: var(--blanco);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-upload:hover { opacity: 0.85; }
+
+  #file-input { display: none; }
+
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .video-card {
+    background: white;
+    border: 1px solid rgba(23,22,112,0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .video-card:hover { box-shadow: 0 12px 40px rgba(23,22,112,0.12); }
+
+  .video-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    background: var(--azul);
+  }
+
+  .video-preview-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--azul);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-preview-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: rgba(244,244,244,0.8);
+    pointer-events: none;
+  }
+
+  .video-info {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .video-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .video-info .video-desc {
+    font-size: 0.82rem;
+    color: rgba(23,22,112,0.55);
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+
+  .video-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: rgba(23,22,112,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: rgba(23,22,112,0.35);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  /* Modal para subir */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(23,22,112,0.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--blanco);
+    padding: 3rem;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+  }
+
+  .modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.2rem; right: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--azul);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .modal-close:hover { opacity: 1; }
+
+  .form-group {
+    margin-bottom: 1.4rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(23,22,112,0.2);
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--azul);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--azul); }
+
+  .modal-file-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(23,22,112,0.5);
+    margin-top: 0.5rem;
+  }
+
+  /* ── PROGRAMAS ── */
+  #programas {
+    background: var(--blanco);
+    border-top: 1px solid rgba(23,22,112,0.08);
+  }
+
+  .programas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .programa-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1.5rem;
+    border: 1px solid rgba(23,22,112,0.1);
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+
+  .programa-card:hover { border-color: var(--azul); transform: translateY(-6px); }
+
+  .programa-card.proximamente { opacity: 0.5; }
+
+  .programa-logo {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1.2rem;
+    object-fit: contain;
+  }
+
+  .programa-logo-svg {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .programa-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .programa-card p {
+    font-size: 0.8rem;
+    color: rgba(23,22,112,0.45);
+  }
+
+  .prox-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    background: var(--azul);
+    color: var(--blanco);
+    text-transform: uppercase;
+  }
+
+  /* ── CONTACTO ── */
+  #contacto {
+    background: var(--azul);
+  }
+
+  #contacto .section-label { color: rgba(244,244,244,0.45); }
+  #contacto .section-title { color: var(--blanco); }
+
+  .contacto-sub {
+    font-size: 1rem;
+    color: rgba(244,244,244,0.55);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 3.5rem;
+  }
+
+  .contacto-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .contacto-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.4rem 2rem;
+    border: 1px solid rgba(244,244,244,0.15);
+    text-decoration: none;
+    color: var(--blanco);
+    transition: border-color 0.3s, background 0.3s;
+    min-width: 240px;
+  }
+
+  .contacto-link:hover {
+    border-color: rgba(244,244,244,0.5);
+    background: rgba(244,244,244,0.05);
+  }
+
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .contact-icon.ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .contact-icon.wa { background: #25D366; }
+  .contact-icon.gm { background: white; }
+
+  .contact-text span {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin-bottom: 0.2rem;
+  }
+
+  .contact-text strong {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgb(15, 14, 80);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: rgba(244,244,244,0.35);
+  }
+
+  footer .footer-right {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: rgba(244,244,244,0.2);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.72rem; }
+    section { padding: 5rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .contacto-links { flex-direction: column; }
+    .contacto-link { min-width: unset; }
+    .hero-name { font-size: clamp(2.8rem, 12vw, 6rem); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">MVD</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#programas">Programas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-blob-2"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ Editora de Video &amp; Contenido Digital ✦</p>
+    <h1 class="hero-name">
+      Martina<br>
+      <span class="italic">Villone</span><br>
+      Dayenoff
+    </h1>
+    <p class="hero-tagline">Edición con intención. Contenido que conecta.</p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary">Ver mi trabajo</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <p class="section-label">— Lo que ofrezco</p>
+  <h2 class="section-title">Servicios<br><em style="font-style:italic;font-weight:400;">creativos</em></h2>
+  <div class="servicios-grid">
+
+    <div class="servicio-card">
+      <div class="servicio-icon">🎬</div>
+      <h3>Edición de Video</h3>
+      <p>Edición profesional de Reels, TikToks, YouTube y contenido de marca. Cortes dinámicos, color grading, subtítulos y efectos.</p>
+      <span class="servicio-tag">Video</span>
+    </div>
+
+    <div class="servicio-card">
+      <div class="servicio-icon">🖼️</div>
+      <h3>Flyers & Diseño</h3>
+      <p>Diseño de flyers, afiches y piezas gráficas para eventos, promociones y redes sociales con identidad visual impactante.</p>
+      <span class="servicio-tag">Diseño</span>
+    </div>
+
+    <div class="servicio-card">
+      <div class="servicio-icon">📲</div>
+      <h3>Historias / Stories</h3>
+      <p>Creación de historias animadas para Instagram y otras plataformas. Contenido vertical, atractivo y optimizado para el feed.</p>
+      <span class="servicio-tag">Social Media</span>
+    </div>
+
+    <div class="servicio-card">
+      <div class="servicio-icon">✨</div>
+      <h3>Motion & Efectos</h3>
+      <p>Animaciones de texto, transiciones personalizadas y efectos visuales que elevan la calidad de tu contenido.</p>
+      <span class="servicio-tag">Animación</span>
+    </div>
+
+    <div class="servicio-card">
+      <div class="servicio-icon">🎵</div>
+      <h3>Sync Musical</h3>
+      <p>Selección y sincronización de música con cortes de video para lograr emoción, ritmo y narrativa perfecta.</p>
+      <span class="servicio-tag">Audio</span>
+    </div>
+
+    <div class="servicio-card">
+      <div class="servicio-icon">📦</div>
+      <h3>Pack de Contenido</h3>
+      <p>Paquetes de edición mensual para creadores y marcas. Consistencia visual y ahorro de tiempo garantizados.</p>
+      <span class="servicio-tag">Pack</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PORTFOLIO / CUENTAS -->
+<section id="portfolio">
+  <p class="section-label">— Mis trabajos</p>
+  <h2 class="section-title">Portfolio &amp;<br><em style="font-style:italic;font-weight:400;">Proyectos</em></h2>
+  <p class="portfolio-intro">Aquí encontrarás una selección de mis ediciones. Cada video refleja el cuidado y la atención al detalle que pongo en cada proyecto.</p>
+    <div>
+        cuentas editadas:
+        <ul>
+            <li><strong>@mercadito.progreso</strong> — Edición de videos y promocionales.</li>
+            <li><strong>@americana.rent</strong> — Edición de contenido para redes sociales</li>       
+    </div>
+  
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>Agregar video</h3>
+
+    <div class="form-group">
+      <label>Archivo de video</label>
+      <button class="btn-upload" onclick="document.getElementById('file-input').click()">Elegir archivo</button>
+      <input type="file" id="file-input" accept="video/*" onchange="handleFileSelect(event)">
+      <p class="modal-file-name" id="file-name-display">Ningún archivo seleccionado</p>
+    </div>
+
+    <div class="form-group">
+      <label>Título del proyecto</label>
+      <input type="text" id="video-title" placeholder="Ej: Reels para @marca">
+    </div>
+
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea id="video-desc" rows="3" placeholder="Contá de qué trata esta edición..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Fecha</label>
+      <input type="date" id="video-date">
+    </div>
+
+    <button class="btn-upload" onclick="addVideo()" style="width:100%;padding:1rem;">Agregar al portfolio</button>
+  </div>
+</div>
+
+<!-- PROGRAMAS -->
+<section id="programas">
+  <p class="section-label">— Herramientas</p>
+  <h2 class="section-title">Programas<br><em style="font-style:italic;font-weight:400;">que uso</em></h2>
+
+  <div class="programas-grid">
+
+    <!-- CapCut -->
+    <div class="programa-card">
+      <div class="programa-logo-svg">
+        <img src="img\capcut.png" alt="CapCut Logo" style="width:72px;height:72px;object-fit:contain;">
+      </div>
+      <h4>CapCut</h4>
+      <p>Edición rápida y dinámica para redes</p>
+    </div>
+
+    <!-- Alight Motion -->
+    <div class="programa-card">
+      <div class="programa-logo-svg">
+        <img src="img\Alight_Motion_logo_PNG_(2).png" alt="Alight Motion Logo" style="width:72px;height:72px;object-fit:contain;">
+      </div>
+      <h4>Alight Motion</h4>
+      <p>Animaciones y efectos de movimiento</p>
+    </div>
+
+    <!-- After Effects -->
+    <div class="programa-card proximamente">
+      <span class="prox-badge">Próximamente</span>
+      <div class="programa-logo-svg">
+        <img src="img\adobe-after-effect.png" alt="After Effects Logo" style="width:72px;height:72px;object-fit:contain;">
+      </div>
+      <h4>After Effects</h4>
+      <p>VFX y motion graphics avanzados</p>
+    </div>
+
+    <!-- Premiere -->
+    <div class="programa-card proximamente">
+      <span class="prox-badge">Próximamente</span>
+      <div class="programa-logo-svg">
+        <img src="img\adobe-premiere-pro.png" alt="Premiere Pro Logo" style="width:72px;height:72px;object-fit:contain;">
+      </div>
+      <h4>Premiere Pro</h4>
+      <p>Edición profesional de video</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-label">— Hablemos</p>
+  <h2 class="section-title">Contacto</h2>
+  <p class="contacto-sub">¿Tenés un proyecto en mente? Escribime por cualquiera de estos medios y te respondo a la brevedad.</p>
+
+  <div class="contacto-links">
+
+    <a href="https://instagram.com/cov3n.1w" target="_blank" class="contacto-link">
+      <div class="contact-icon ig">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </div>
+      <div class="contact-text">
+        <span>Instagram</span>
+        <strong>@cov3n.1w</strong>
+      </div>
+    </a>
+
+    <a href="https://wa.me/5493586024433" target="_blank" class="contacto-link">
+      <div class="contact-icon wa">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </div>
+      <div class="contact-text">
+        <span>WhatsApp</span>
+        <strong>+54 9 358 602 4433</strong>
+      </div>
+    </a>
+
+    <a href="mailto:martinavillonedatenoff388@gmail.com" class="contacto-link">
+      <div class="contact-icon gm">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 18L6 8.4L12 13L18 8.4L18 18" stroke="#EA4335" stroke-width="1.5"/><path d="M2 6H22V18C22 19.1046 21.1046 20 20 20H4C2.89543 20 2 19.1046 2 18V6Z" stroke="#4285F4" stroke-width="1.5" fill="none"/><path d="M2 6L12 13L22 6" stroke="#34A853" stroke-width="1.5"/></svg>
+      </div>
+      <div class="contact-text">
+        <span>Gmail</span>
+        <strong>martinavillone...</strong>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Martina Villone Dayenoff — Todos los derechos reservados.</p>
+  <p class="footer-right">Editora de video &amp; contenido digital ✦ Argentina</p>
+</footer>
+
+<script>
+  // ── Upload logic ──
+  let selectedFile = null;
+  const videos = [];
+
+  function openModal() {
+    document.getElementById('modal').classList.add('active');
+    // Set today's date as default
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('video-date').value = today;
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    selectedFile = null;
+    document.getElementById('file-name-display').textContent = 'Ningún archivo seleccionado';
+    document.getElementById('video-title').value = '';
+    document.getElementById('video-desc').value = '';
+  }
+
+  function handleFileSelect(e) {
+    const file = e.target.files[0];
+    if (file) {
+      selectedFile = file;
+      document.getElementById('file-name-display').textContent = file.name;
+    }
+  }
+
+  function addVideo() {
+    const title = document.getElementById('video-title').value.trim() || 'Sin título';
+    const desc = document.getElementById('video-desc').value.trim() || '';
+    const dateVal = document.getElementById('video-date').value;
+
+    if (!selectedFile) { alert('Por favor seleccioná un archivo de video.'); return; }
+
+    const url = URL.createObjectURL(selectedFile);
+    const dateStr = dateVal ? new Date(dateVal + 'T00:00:00').toLocaleDateString('es-AR', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
+
+    videos.push({ url, title, desc, dateStr });
+    renderVideos();
+    closeModal();
+  }
+
+  function renderVideos() {
+    const grid = document.getElementById('videos-grid');
+    const empty = document.getElementById('empty-msg');
+
+    if (videos.length === 0) {
+      empty.style.display = 'block';
+      grid.innerHTML = '';
+      return;
+    }
+
+    empty.style.display = 'none';
+    grid.innerHTML = videos.map((v, i) => `
+      <div class="video-card">
+        <div class="video-preview-container">
+          <video src="${v.url}" preload="metadata" muted></video>
+          <div class="video-play-icon" onclick="togglePlay(this, ${i})">▶</div>
+        </div>
+        <div class="video-info">
+          <h4>${v.title}</h4>
+          ${v.desc ? `<p class="video-desc">${v.desc}</p>` : ''}
+          ${v.dateStr ? `<p class="video-date">📅 ${v.dateStr}</p>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function togglePlay(iconEl, idx) {
+    const card = iconEl.parentElement;
+    const video = card.querySelector('video');
+    if (video.paused) {
+      video.play();
+      iconEl.textContent = '⏸';
+    } else {
+      video.pause();
+      iconEl.textContent = '▶';
+    }
+  }
+
+  // Drag & drop on upload area
+  const uploadArea = document.getElementById('upload-trigger');
+  uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.style.borderColor = 'var(--azul)'; });
+  uploadArea.addEventListener('dragleave', () => { uploadArea.style.borderColor = ''; });
+  uploadArea.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadArea.style.borderColor = '';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('video/')) {
+      selectedFile = file;
+      openModal();
+      document.getElementById('file-name-display').textContent = file.name;
+    }
+  });
+
+  // Close modal on overlay click
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.servicio-card, .programa-card, .contacto-link').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
