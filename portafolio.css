@@ -190,6 +190,14 @@ h1, h2, h3 {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    grid-auto-rows: repeat(2fr);
+}
+.portfolio-grid a{
+    color: blue;
+    text-decoration:dotted;
+    margin-left: 170px;
+    font-size: 50px;
+    margin-top: 30px;
 }
 .video-card{
     width: 350px;
@@ -292,11 +300,7 @@ video {
     text-align: center;
     padding: 1.5rem 0;
 }
-a {
-    text-decoration: none;
-    color: black;
-    transition: all 0.3s ease;
-}
+
 a :hover {
     color: rgb(143, 141, 150);
     text-decoration: none;
@@ -324,14 +328,7 @@ a :hover {
     box-shadow: 0 2px 3px rgba(0,0,0,0.25);
 }
  
-.portfolio-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin-top: 20px;
-    flex-wrap: nowrap;
-}
- 
+
 .hanger-item {
     display: flex;
     flex-direction: column;
